@@ -5,6 +5,8 @@
     box-sizing: border-box;
 }
 
+
+
 body
 {
     font-family: "Roboto";
@@ -52,7 +54,12 @@ ul
 a{
     text-decoration: none;
 }
-
+.ham-burger{
+    display: none;
+    max-width: 30px;
+    filter: brightness(0);
+    filter: invert(1);
+}
 .hero-section
 {
     background-color: #1F2937;
@@ -229,4 +236,254 @@ a{
 {
     font-size: 18px;
     color: #E5E7EB;
+}
+
+@media (max-width:1169px)
+{
+    
+    .container{
+        width: 80%;
+        margin: auto;
+    }
+}
+
+@media (max-width:1021px)
+{
+    .container{
+        width: 85%;
+        margin: auto;
+    }
+}
+
+@media(max-width:962px) {
+    .container{
+        width: 90%;
+        margin: auto;
+    }
+}
+
+@media(max-width:908px)
+{
+    .CTA
+    {
+    background-color: #3882F6;
+    border-radius: 6px;
+    margin: 70px 0px;
+    padding: 45px 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    }
+}
+
+@media(max-width:842px)
+{
+    .card
+    {
+    align-self: center;
+    justify-self: center;
+    width: 160px;
+    text-align: center;
+    }
+    .card-img
+    {
+    width: 160px;
+    height: 160px;
+    border: solid 4px #3882F6;
+    border-radius: 10px;
+    }
+    .card-info
+    {
+    font-size: 18px;
+    color: #6D747D;
+    font-weight: 400;
+    }
+    .hero-text-heading
+    {
+    font-size: 46px;
+    color: #F9FAF8;
+    font-weight: bolder;
+    margin-bottom: 7px;
+    }
+    .hero-text-subheading
+    {
+    font-size: 16px;
+    color: #E5E7EB;
+    margin-bottom: 15px;
+    }
+
+    .quote
+    {
+    font-size: 34px;
+    color: #1F2937;
+    font-weight: 300;
+    font-style: italic;
+    }
+
+    .CTA-Heading{
+        font-size: 22px;
+        font-weight: bolder;
+        color: #F9FAF8;
+    }
+    .CTA-subheading
+    {
+        font-size: 16px;
+        font-weight: 400;
+        color: #E5E7EB;
+    }
+    .CTA-btn
+    {
+        border:solid 2px white;
+        border-radius: 7px;
+        padding: 5px 30px;
+        color: #F9FAF8;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+@media (max-width:772px)
+{
+    .navbar ul li a
+    {
+        font-size: 16px;
+        color: #E5E7EB;
+        margin-left: 20px;
+    }
+    .hero
+    {
+        height: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .hero-text
+    {
+        width: 80%;
+        padding-right: 5px;
+    }
+    .hero-img
+    {
+        display: none;
+    }
+    .CTA
+    {
+    background-color: #3882F6;
+    border-radius: 6px;
+    margin: 70px 0px;
+    padding: 45px 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    }
+}
+
+
+@media (max-width:714px)
+{
+    .info-card-container
+    {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 20px 0px;
+        margin-bottom: 60px;
+        
+    }
+    .CTA
+    {
+    background-color: #3882F6;
+    border-radius: 6px;
+    margin: 70px 0px;
+    padding: 45px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    }
+    .CTA-subheading
+    {
+        font-size: 16px;
+        font-weight: 400;
+        color: #E5E7EB;
+        margin-bottom: 10px;
+    }
+    .nav-items{
+        display: none;
+    }
+    .ham-burger{
+        display: block;
+    }
+}
+
+@media (max-width:591px)
+{
+    .hero-section
+    {
+        background-color: #1F2937;
+        align-items: center;
+        padding: 60px 0px;
+    }
+    .quote-section-text
+    {
+        padding: 80px 40px;
+    }
+}
+
+@media (max-width:471px) {
+    .hero-text-heading
+    {
+    font-size: 42px;
+    color: #F9FAF8;
+    font-weight: bolder;
+    margin-bottom: 7px;
+    }
+    .hero-text-subheading
+{
+    font-size: 16px;
+    color: #E5E7EB;
+    margin-bottom: 15px;
+}
+
+
+
+.btn{
+    margin-top: 5px;
+    background-color: #3882F6;
+    border-radius: 5px;
+    padding: 7px 25px;
+    color: #F9FAF8;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.info-title{
+    text-align: center;
+    font-size: 34px;
+}
+.quote
+{
+    font-size: 32px;
+}
+.hero-text
+    {
+        width: 100%;
+        padding-right: 5px;
+    }
+}
+
+@media (max-width:417px)
+{
+    .CTA
+    {
+        margin: 40px 0px;
+    }
+    .quote-section-text
+    {
+        padding: 40px 20px;
+    }
 }
