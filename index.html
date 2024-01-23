@@ -25,7 +25,7 @@
         <div class="container">
             <div class="hero">
                 <div class="hero-text">
-                    <div class="hero-text-heading">This website is awesome</div>
+                    <div id="text" class="hero-text-heading">This website is awesome</div>
                     <div class="hero-text-subheading">This website has some subtext that goes here under the main title. It's a smaller
                      font and color is lower contrast.
                     </div>
@@ -93,5 +93,18 @@
             <div class="footer-text">Copyright © The Odin Project 2021</div>
         </div>
     </div>
+
+    <button id="buttonA"> Press Me</button>
+    <h3 id="headingA"></h3>
+
+    <script>
+        const buttonA = document.querySelector("#buttonA");
+        const heading = document.querySelector("#headingA");
+        buttonA.onclick = () =>{
+            const name  = prompt("What is your name");
+            alert(`Hello ${name},nice to meet you`);
+            heading.textContent = `welcome ${name}`;
+        }
+    </script>
 </body>
 </html>
