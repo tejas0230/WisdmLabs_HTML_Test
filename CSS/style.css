@@ -92,7 +92,7 @@ ul {
 .hero-section {
   background-color: #ececec;
   width: 100%;
-  height: 2075px;
+  height: 1860px;
 }
 
 .hero-main {
@@ -415,6 +415,7 @@ font-weight: 900;
 line-height: 36px;
 letter-spacing: 0.02em;
 text-align: left;
+color: #434343;
 }
 .schedule-time,.schedule-dates
 {
@@ -424,6 +425,7 @@ font-size: 18px;
 font-weight: 700;
 line-height: 27px;
 letter-spacing: 0.02em;
+color: #434343;
 text-align: left;
 }
 .schedule-time span
@@ -560,5 +562,271 @@ line-height: 200px;
 letter-spacing: 0.02em;
 text-align: left;
 color: rgba(0, 172, 180, 1);
+}
 
+.hero-similar{
+  margin-top: 40px;
+  padding: 30px 30px;
+  background-color: #ffffff;
+}
+
+.hero-similar-title,.about-title,.cancelation-title
+{
+  font-family: Montserrat;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 36px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: #434343;
+}
+.similar-container
+{
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.similar-card
+{
+  font-family: PT Sans;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  width: 25%;
+}
+.card-content
+{
+  color: #434343;
+}
+.card-link,.about-link-content
+{
+  text-decoration: none;
+  color: #dc3636;
+}
+.about-section
+{
+  background-color: #ffffff;
+  padding: 60px 0px;
+}
+.important-blue
+{
+  color: #00acb4;
+}
+.about-classes-container
+{
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(67, 67, 67, 0.4);
+}
+.about-content,.policy-preface
+{
+  font-family: PT Sans;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: #434343;
+  margin-top: 10px;
+}
+.about-links
+{
+  font-family: PT Sans;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  margin-top: 20px;
+}
+.about-link-content{
+  margin-right: 20px;
+}
+.cancelation-policy-container
+{
+  padding-top: 40px ;
+}
+.policies-container
+{
+  margin-top: 30px;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+.policy-card
+{
+ width: 23%;
+}
+.policy-card-title
+{
+  font-family: PT Sans;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: #dc3636;
+}
+.policy-card-content
+{
+  font-family: PT Sans;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: #434343;
+}
+.strong
+{
+  font-weight: 700;
+}
+
+.footer-section
+{
+  background-color: #434343;
+  padding: 30px 0px 50px 0px;
+}
+.footer-1-container
+{
+display: flex;
+align-items: flex-end;
+justify-content: space-between;
+}
+.footer-1-container ul{
+  display: flex;
+  align-items: flex-end;
+}
+.footer-1-container ul li, .footer-1-container ul li a
+{
+  text-decoration: none;
+  font-family: PT Sans;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0.05em;
+  text-align: left;
+  color: #ffffff;
+  margin-right: 5px;
+}
+
+.form-title
+{
+font-family: PT Sans;
+font-size: 21px;
+font-weight: 700;
+line-height: 28px;
+letter-spacing: 0.02em;
+text-align: left;
+color: #ffffff;
+}
+
+.form-fields
+{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 2px 2px 2px 24px;
+  border-radius: 28px;
+  margin-top: 10px;
+}
+.form-email-input
+{
+  border: none;
+  padding: 8px 24px 8px 4px;
+  margin-right: 24px;
+  font-family: PT Sans;
+font-size: 16px;
+font-weight: 400;
+line-height: 21px;
+letter-spacing: 0em;
+text-align: left;
+color: rgba(120, 117, 121, 1);
+}
+input:active,input:focus
+{
+  border-color: transparent;
+}
+.form-email-input::placeholder{
+  font-family: PT Sans;
+font-size: 16px;
+font-weight: 400;
+line-height: 21px;
+letter-spacing: 0em;
+text-align: left;
+color: rgba(120, 117, 121, 1);
+
+}
+.form-button{
+  background-color: #F39B4E;
+  padding: 8px 24px;
+  border-radius: 28px;
+  border: none;
+font-family: PT Sans;
+font-size: 18px;
+font-weight: 700;
+line-height: 27px;
+letter-spacing: 0.02em;
+text-align: center;
+color: #ffffff;
+}
+
+.footer-2-container
+{
+  margin: 30px 0px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+}
+.footer-contact-title
+{
+font-family: PT Sans;
+font-size: 21px;
+font-weight: 700;
+line-height: 28px;
+letter-spacing: 0.02em;
+text-align: left;
+color: #ffffff;
+}
+.phone,.footer-address
+{
+  font-family: PT Sans;
+font-size: 14px;
+font-weight: 700;
+line-height: 32px;
+letter-spacing: 0.04em;
+text-align: left;
+color: #F39B4E;
+}
+.footer-contact-info
+{
+  display: flex;
+}
+.phone-and-email
+{
+  margin-right: 15px;
+  font-family: PT Sans;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: #ffffff;
+}
+.footer-social img{
+  border: 2px solid #F39B4E;
+  border-radius: 28px;
+  padding: 6px 6px;
+  background-color: transparent;
+}
+
+.footer-social img:hover
+{
+  background-color: #F39B4E;
+}
+
+.footer-3-container , .footer-3-container a
+{
+  display: flex;
+  justify-content: space-between;
+  font-family: PT Sans;
+font-size: 14px;
+font-weight: 400;
+line-height: 22px;
+letter-spacing: 0.01em;
+text-align: left;
+color: #ffffff;
 }
