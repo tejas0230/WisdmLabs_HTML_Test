@@ -16,7 +16,9 @@ let id = 0;
 function ShowReview(id)
 {
     quote.classList.add('quote-fade');
-    setTimeout(()=> {quote.classList.remove('quote-fade');},550);
+    setTimeout(()=> {quote.classList.remove('quote-fade')},490);
+    quote.classList.add('slideInRight');
+    setTimeout(()=>{quote.classList.remove('slideInRight')},490);
     quoteText.innerHTML = reviews[id];
     quoteAuthor.innerHTML = author[id];
 }
