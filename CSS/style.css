@@ -15,6 +15,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+.hidden
+{
+  display: none;
+}
 .hamburger
 {
   display: none;
@@ -1227,6 +1231,10 @@ input:focus {
     display: block;
     margin: 0px 15px;
   }
+  .hamburger:hover
+  {
+    cursor: pointer;
+  }
   .blog-review img{
     left: 5px;
   }
@@ -1249,6 +1257,19 @@ input:focus {
   .container
   {
     max-width: 475px;
+  }
+  .nav-bar-small
+  {
+    padding: 10px 5px;
+  }
+  .nav-bar-small ul
+  {
+    display:  flex;
+    flex-direction: column;
+  }
+  .nav-bar-small ul li
+  {
+    display: inline;
   }
   .top-frame{
     display: none;
@@ -1450,9 +1471,304 @@ input:focus {
   }
 
 }
-@media (max-width:475px) {
+@media (max-width:476px) {
   .container
   {
-   width: 100%;
+    margin: auto;
+    width: 380px;
   }
+  .hero-main
+  {
+    padding: 10px 10px;
+  }
+  .detail-1-line-1 {
+    font-family: PT Sans;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 14px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: #000000;
+  }
+  .important {
+    font-family: PT Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: #dc3636;
+  }
+  .detail-1-time {
+    font-family: PT Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: #434343;
+  }
+  .detail-2-content {
+    font-family: PT Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    text-align: left;
+  }
+  .detail-logo {
+    color: #dc3636;
+  }
+  .detail-3-line-1 {
+    font-family: PT Sans;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    text-align: left;
+  }
+  .detail-3-time {
+    font-family: PT Sans;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: #434343;
+  }
+  .navbar-section
+  {
+    padding: 10px 10px;
+  }
+  .blog-content-container
+  {
+    padding: 10px 15px;
+  }
+  .blog-review-container
+  {
+    padding: 20px 15px;
+  }
+  .blog-review img{
+    left: 105px;
+  }
+  .reviews-container
+  {
+    justify-content: space-between;
+    padding: 15px 5px;
+  }
+  .inverted-commas
+  {
+    font-size: 20px;
+  }
+  .review-button-icons
+  {
+    width: 20px;
+    height: 20px;
+  }
+  .review-text-container {
+    background-color: #ffffff;
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px 20px;
+    border-radius: 16px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+    flex-shrink: 1;
+  
+  }
+  .review-text-content{
+    font-size: 16px;
+  }
+  .hero-similar
+  {
+    padding: 15px 15px;
+  }
+  .about-section{
+    padding: 15px 15px;
+  }
+  .about-content,
+.policy-preface {
+  width: 96%;
+  font-family: PT Sans;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: #434343;
+  margin-top: 10px;
+}
+.about-links {
+  font-family: PT Sans;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.about-link-content {
+  margin-right: 20px;
+} 
+.cancelation-policy-container {
+  padding-top: 40px;
+}
+.policies-container {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.policy-card {
+  width: 100%;
+}
+.policy-card-title {
+  font-family: PT Sans;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: #dc3636;
+}
+.policy-card-content {
+  font-family: PT Sans;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: #434343;
+  width: 95%;
+}
+.about-title{
+  display: inline;
+}
+.about-classes-container {
+ width: 100%;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(67, 67, 67, 0.4);
+}
+.footer-section
+{
+  padding: 10px 10px;
+}
+.footer-1-container
+{
+  width: 98%;
+}
+.tags
+{
+  font-size: 14px;
+}
+.footer-contact-info {
+  display: flex;
+  flex-direction: column;
+}
+.footer-1-container ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.form-fields {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 2px 2px 2px 14px;
+  border-radius: 28px;
+  margin-top: 10px;
+}
+.form-email-input {
+  border: none;
+  padding: 8px 14px 8px 4px;
+  margin-right: 14px;
+  font-family: PT Sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(120, 117, 121, 1);
+}
+}
+
+@media(max-width:380px) {
+  
+  .container
+  {
+    width: 100%;
+  }
+  .form-title{
+    font-size: 16px;
+  }
+  .form-fields {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 2px 2px 2px 14px;
+    border-radius: 28px;
+    margin-top: 10px;
+  }
+  .form-email-input {
+    border: none;
+    padding: 8px 14px 8px 4px;
+    margin-right: 14px;
+    font-family: PT Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(120, 117, 121, 1);
+  }
+  input:active,
+  input:focus {
+    border-color: transparent;
+  }
+  .form-email-input::placeholder {
+    font-family: PT Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(120, 117, 121, 1);
+  }
+  .form-button {
+    background-color: #f39b4e;
+    padding: 8px 24px;
+    border-radius: 28px;
+    border: none;
+    font-family: PT Sans;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 27px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    color: #ffffff;
+  }
+  .footer-contact-info {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer-1-container ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.blog-review img
+{
+  left: 96px;
+}
+
+.hero-main-title{
+  font-size: 24px;
+  line-height: 26px;
+}
+.author{
+  font-size: 16px;
+}
 }
