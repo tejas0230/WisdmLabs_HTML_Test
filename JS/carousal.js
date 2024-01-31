@@ -16,7 +16,7 @@ const reviews = ["Erin was a wonderful teacher. She was personable, kind, organi
 
 const author = ["Katy.L","A Culinary Delight","A Gripping Page-Turner"];
 let id = 0;
-function ShowReview(id)
+function ShowReviewRight(id)
 {
     quote.classList.add('quote-fade');
     setTimeout(()=> {quote.classList.remove('quote-fade')},490);
@@ -25,7 +25,15 @@ function ShowReview(id)
     quoteText.innerHTML = reviews[id];
     quoteAuthor.innerHTML = author[id];
 }
-
+function ShowReviewLeft(id)
+{
+    quote.classList.add('quote-fade');
+    setTimeout(()=> {quote.classList.remove('quote-fade')},490);
+    quote.classList.add('slideInLeft');
+    setTimeout(()=>{quote.classList.remove('slideInLeft')},490);
+    quoteText.innerHTML = reviews[id];
+    quoteAuthor.innerHTML = author[id];
+}
 
 if(screen.width>=768)
 {
@@ -56,7 +64,7 @@ leftButton.addEventListener('click',()=>{
     {
         id = reviews.length -1;
     }
-    ShowReview(id);
+    ShowReviewLeft(id);
 });
 rightButton.addEventListener('click',()=>{
     id++;
@@ -64,5 +72,5 @@ rightButton.addEventListener('click',()=>{
     {
         id=0;
     }
-    ShowReview(id);
+    ShowReviewRight(id);
 });

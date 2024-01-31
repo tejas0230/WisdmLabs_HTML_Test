@@ -532,7 +532,10 @@ a {
 {
   animation: slide-in-right 0.5s ease-in-out;
 }
-
+.slideInLeft
+{
+  animation: slide-in-left 0.5s ease-in-out;
+}
 @keyframes slide-out-left
 {
   0%{
@@ -542,6 +545,28 @@ a {
     opacity: 0;
     transform: scale(0.2);
     transform: translateX(-100px);
+  }
+}
+@keyframes slide-in-left
+{
+  0%{
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slide-in-right
+{
+  0%{
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 @keyframes slide-in-right
