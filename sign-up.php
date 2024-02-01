@@ -8,12 +8,28 @@ $dbname = "user";
 $conn = new mysqli($servername, $username, $password,$dbname);
 
 $feedback="";
-
+$passError="";
 // Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+function CheckPassword($user_pass)
+{
+    $lower = "/[a-z]/";
+    $upper = "/[A-Z]/";
+    $num = "/[0-9]/";
+    $special = "/[\!\@\#$\%\^\&\*\(\)]/";
+    if(preg_match($lower,$user_pass)===1 && preg_match($lower,$user_pass)===1 && preg_match($lower,$user_pass)===1 && preg_match($lower,$user_pass)===1 && strlen($user_pass)>=8)
+    {
+        return TRUE;
+    }
+    else
+    {
+        $passError = "Password should match the pattern";
+        return FALSE;
+    }
+}
 
 function CheckUserExists($user_mail,$conn)
 {
@@ -39,6 +55,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
 
     //sanitaize data - remove white spaces from starting and end
     $user_mail = trim($user_mail);
+    $user_pass = trim($user_pass); 
     //sanitaize data - remove dangerous characters to prevent HTML injection
     $user_mail = filter_var($user_mail,FILTER_SANITIZE_EMAIL);
     if(!filter_var($user_mail,FILTER_VALIDATE_EMAIL))
@@ -52,12 +69,15 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
     }
     else
     {
-        $sql = "INSERT into user (user_name,user_email,user_pass) values ('$user_name','$user_mail','$user_pass')";
+        if(CheckPassword($user_pass))
+        {
+            $sql = "INSERT into user (user_name,user_email,user_pass) values ('$user_name','$user_mail','$user_pass')";
         $result = $conn->query($sql);
         if($result===TRUE)
         {
             $_SESSION['current_user'] = $user_mail;
             header("Location:index.php");
+        }
         }
     }
 }
@@ -92,23 +112,23 @@ $conn->close();
 
                 <div class="form-input-container">
                     <label for="user-mail" class="user-lable">Email</label>
-                    <input type="email" name="user-mail" id="user-mail" class="user" placeholder="i.e. you@example.com">
+                    <input type="email" name="user-mail" id="user-mail" class="user" placeholder="i.e. you@example.com" required>
 
                     <div class="user-error-message"><?=$feedback;?></div>
                 </div>
 
                 <div class="form-input-container">
                     <label for="user-mail" class="user-name">Username</label>
-                    <input type="text" name="user-name" id="user-name" class="user" placeholder="i.e. Username">
+                    <input type="text" name="user-name" id="user-name" class="user" placeholder="i.e. Username" required>
 
                     <div class="user-error-message hidden">User does not exist!</div>
                 </div>
 
                 <div class="form-input-container">
                     <label for="user-password" class="pass-lable">Password</label>
-                    <input type="password" name="user-password" id="user-password" class="pass" placeholder="********" value="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                    <input type="password" name="user-password" id="user-password" class="pass" placeholder="********" required>
 
-                    <div class="pass-error-message hidden">Password is incorrect</div>
+                    <div class="pass-error-message"><?=$passError?></div>
                 </div>
 
                 <div id="message">
@@ -123,7 +143,7 @@ $conn->close();
                 </div>
 
         
-                <button type="submit" value="sign-up" class="form-sign-up-button" name="sign-up-button">Sign Up</button>
+                <button  value="sign-up" class="form-sign-up-button" name="sign-up-button">Sign Up</button>
                 
                 <div class="details-2">
                     <a href="sign-in.php" class="forgot-pass">Already have an account?</a>
