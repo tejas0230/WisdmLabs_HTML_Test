@@ -55,12 +55,12 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username='tejas.bendkule@wisdmlabs.com';
-        $mail->Password = 'cqnilrbjdzztuein';
+        $mail->Username='';
+        $mail->Password = '';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
 
-        $mail->setFrom('tejas.bendkule@wisdmlabs.com');
+        $mail->setFrom('');
         $mail->addAddress($user_mail);
         $mail->isHTML(true);
         $token = GenerateToken();
