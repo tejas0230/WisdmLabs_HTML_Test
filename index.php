@@ -22,14 +22,14 @@ else
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Welcome</title>
     <link rel="stylesheet" href="CSS/style.css?v=<?php echo time();?>">
 </head>
 <body>
     <section class="header">
         <div class="container">
             <div class="nav-bar">
-                <a href="index.html" class="logo">Logo</a>
+                <a href="index.php" class="logo">Logo</a>
                 <div class="nav-buttons">
                     <a href="sign-in.php" class="sign-in <?php
     if(isset($_SESSION['current_user']))

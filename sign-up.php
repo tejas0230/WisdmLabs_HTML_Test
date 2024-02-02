@@ -1,32 +1,22 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "tejas";
-$dbname = "user";
-// Create connection
-$conn = new mysqli($servername, $username, $password,$dbname);
+include 'connection.php';
 
 $feedback="";
 $passError="";
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
 
 function CheckPassword($user_pass)
 {
     $lower = "/[a-z]/";
     $upper = "/[A-Z]/";
-    $num = "/[0-9]/";
-    $special = "/[\!\@\#$\%\^\&\*\(\)]/";
-    if(preg_match($lower,$user_pass)===1 && preg_match($lower,$user_pass)===1 && preg_match($lower,$user_pass)===1 && preg_match($lower,$user_pass)===1 && strlen($user_pass)>=8)
+    $numbers = "/[0-9]/";
+    $special = "/[!@#$%^&*()<>,.?{}]/";
+    if(preg_match($lower,$user_pass)===1 && preg_match($upper,$user_pass)===1&&preg_match($numbers,$user_pass)&&preg_match($special,$user_pass)===1&&strlen($user_pass)>=8)
     {
         return TRUE;
     }
     else
     {
-        $passError = "Password should match the pattern";
         return FALSE;
     }
 }
@@ -72,12 +62,16 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
         if(CheckPassword($user_pass))
         {
             $sql = "INSERT into user (user_name,user_email,user_pass) values ('$user_name','$user_mail','$user_pass')";
-        $result = $conn->query($sql);
-        if($result===TRUE)
-        {
-            $_SESSION['current_user'] = $user_mail;
-            header("Location:index.php");
+            $result = $conn->query($sql);
+            if($result===TRUE)
+            {
+                $_SESSION['current_user'] = $user_mail;
+                header("Location:index.php");
+            }
         }
+        else
+        {
+            $passError = "Password should match the pattern";
         }
     }
 }
@@ -92,8 +86,8 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="CSS/style.css?v=<?php echo time();?>">
 </head>
 <body>
     <section class="header">
@@ -107,7 +101,7 @@ $conn->close();
     <section class="form">
         <div class="container">
             <div class="form-section">
-            <form action="" method="POST" class="sign-in-form">
+            <form action="" method="POST" class="sign-up-form">
                 <div class="form-title">Sign Up</div>
 
                 <div class="form-input-container">

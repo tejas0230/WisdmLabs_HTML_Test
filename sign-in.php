@@ -1,19 +1,9 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "tejas";
-$dbname = "user";
-// Create connection
-$conn = new mysqli($servername, $username, $password,$dbname);
+include 'connection.php';
 
 $user_feedback="";
 $pass_feedback = "";
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
 
 function CheckUserExists($user_mail,$conn)
 {
@@ -86,8 +76,8 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="CSS/style.css?v=<?php echo time();?>">
 </head>
 <body>
     <section class="header">
@@ -119,7 +109,7 @@ $conn->close();
                 </div>
 
                 <div class="details">
-                    <a href="" class="forgot-pass">Forgot Password?</a>
+                    <a href="forgot-pass.php" class="forgot-pass">Forgot Password?</a>
                 </div>
 
         

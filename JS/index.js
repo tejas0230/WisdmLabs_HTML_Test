@@ -11,15 +11,16 @@ pass_Input.onfocus = function()
 {
     message.classList.remove('hidden');
 }
-
 pass_Input.onblur = function()
 {
     message.classList.add('hidden');
 }
 
 
+var canSubmit = false;
 pass_Input.onkeyup = function()
 {
+      
     var lowerCaseLetters = /[a-z]/g;
   if(pass_Input.value.match(lowerCaseLetters)) {
     lower.classList.remove("invalid");
@@ -66,4 +67,27 @@ pass_Input.onkeyup = function()
         special.classList.remove("valid");
         special.classList.add("invalid");
         }
+
+
+    if(pass_Input.value.match(specialCharacters) && pass_Input.value.match(lowerCaseLetters) && pass_Input.value.match(upperCaseLetters)&&pass_Input.value.match(numberCheck) && pass_Input.value.length >=8)
+    {
+        canSubmit = true;
+        message.classList.add("hidden");
     }
+    else
+    {
+        canSubmit = false;
+    }
+    console.log(canSubmit);
+
+}
+
+var form = document.querySelector(".sign-up-form");
+form.addEventListener("submit",(e)=>{
+    if(!canSubmit)
+    {
+        alert("Please enter a correct password");
+        e.preventDefault();
+    }
+});
+
