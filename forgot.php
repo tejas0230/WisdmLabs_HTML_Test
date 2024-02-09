@@ -1,19 +1,31 @@
 <?php
-include 'connection.php';
+/**
+ * Get the required classes
+ */
+require('connection.php');
+require('user.php');
+
+
+/**
+ * Create objects / Get singleton instances
+ */
+$user = new User();
+$db_obj = DBConn::getDBConn();
 
 $confirm_pass_feedback ="";
 
+//Get password reset token from URL
 $token = $_GET['token'];
 
 if($_SERVER["REQUEST_METHOD"]==="POST")
 {
+    //Get new pass and confirmed pass from the form
     $user_pass = $_POST['user-password'];
     $confirm_pass = $_POST['confirm-password'];
 
     if($user_pass===$confirm_pass)
     {
-        $sql = "UPDATE user set user_pass='$confirm_pass' where token='$token'";
-        $result = $conn->query($sql);
+        $result = $user->UpdateUserPass($confirm_pass, $token, $db_obj);
         if($result===TRUE)
         {
             echo "<script>alert('Password Reset Successfully');document.location.href='sign-in.php';</script>";

@@ -1,36 +1,14 @@
 <?php
 session_start();
-include 'connection.php';
+require('connection.php');
+
+require('user.php');
+$user = new User();
+
+$db_obj = DBConn::getDBConn();
 
 $user_feedback="";
 $pass_feedback = "";
-
-function CheckUserExists($user_mail,$conn)
-{
-    $sql = "SELECT * from user where user_email = '{$user_mail}'";
-    $result = $conn->query($sql);
-    if($result->num_rows===1)
-    {
-        return TRUE;
-    }
-    else
-    {
-        return FALSE;
-    }
-}
-
-function GetUserPassword($user_mail,$conn)
-{
-    $sql = "SELECT * from user where user_email = '{$user_mail}'";
-    $result = $conn->query($sql);
-    if($result->num_rows===1)
-    {
-        $row  = $result->fetch_assoc();
-        return $row['user_pass'];
-    }
-}
-
-
 
 if($_SERVER["REQUEST_METHOD"]==="POST")
 {
@@ -38,18 +16,18 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
     $user_mail = $_POST['user-mail'];
     $user_pass = $_POST['user-password'];
 
-    //sanitaize data - remove white spaces from starting and end
-    $user_mail = trim($user_mail);
-    //sanitaize data - remove dangerous characters to prevent HTML injection
-    $user_mail = filter_var($user_mail,FILTER_SANITIZE_EMAIL);
-    if(!filter_var($user_mail,FILTER_VALIDATE_EMAIL))
+    $user_mail = $user->TrimAndSanitizeEmail($user_mail);
+
+    if(!filter_var($user_mail, FILTER_VALIDATE_EMAIL))
     {
         $feedback = "Invalid Email";
         return 1;
     }
-    if(CheckUserExists($user_mail,$conn))
+
+    if($user->CheckUserExists($user_mail,$db_obj))
     {
-        $pass = GetUserPassword($user_mail,$conn);
+        $pass = $user->GetUserPassword($user_mail,$db_obj);
+        $user_pass = sha1($user_pass);
         if($pass===$user_pass)
         {
             $_SESSION['current_user'] = $user_mail;
@@ -66,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
         $user_feedback = "User doesn't exist - sign up";
     }
 }
-$conn->close();
+$db_obj->close();
 
 ?>
 

@@ -1,81 +1,42 @@
 <?php
-include 'connection.php';
+/**
+ * Get the required classes
+ */
+require('connection.php');
+require('user.php');
+require('send-mail.php');
 
-use PHPMailer\PHPMailer\PHPMailer;
+/**
+ * Create objects / get singleton instances
+ */
+$db_obj = DBConn::getDBConn();
+$user = new User();
+$mailSender = new MailSender();
 
-require 'phpmailer/src/Exception.php';
-require 'phpmailer/src/PHPMailer.php';
-require 'phpmailer/src/SMTP.php';
 $user_feedback="";
 
-function CheckUserExists($user_mail,$conn)
-{
-    $sql = "SELECT * from user where user_email = '{$user_mail}'";
-    $result = $conn->query($sql);
-    if($result->num_rows===1)
-    {
-        return TRUE;
-    }
-    else
-    {
-        return FALSE;
-    }
-}
-
-function GenerateToken()
-{
-    $n=24;
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $randomString = '';
- 
-    for ($i = 0; $i < $n; $i++) {
-        $index = rand(0, strlen($characters) - 1);
-        $randomString .= $characters[$index];
-    }
- 
-    return $randomString;
-}
 if($_SERVER["REQUEST_METHOD"]==="POST")
 {
     //get data from form
     $user_mail = $_POST['user-mail'];
     
-   //sanitaize data - remove white spaces from starting and end
-    $user_mail = trim($user_mail);
-    //sanitaize data - remove dangerous characters to prevent HTML injection
-    $user_mail = filter_var($user_mail,FILTER_SANITIZE_EMAIL);
-    if(!filter_var($user_mail,FILTER_VALIDATE_EMAIL))
+    $user_mail = $user->TrimAndSanitizeEmail($user_mail);
+    if(!filter_var($user_mail, FILTER_VALIDATE_EMAIL))
     {
         $feedback = "Invalid Email";
         return 1;
     }
-    if(CheckUserExists($user_mail,$conn))
+
+    if($user->CheckUserExists($user_mail,$db_obj))
     {
-        $mail = new PHPMailer(true);
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username='';
-        $mail->Password = '';
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port = 465;
-
-        $mail->setFrom('');
-        $mail->addAddress($user_mail);
-        $mail->isHTML(true);
-        $token = GenerateToken();
-        $mailBody = "Please follow the link to reset your password\n http://localhost/wisdm/WisdmLabs_HTML_Test/forgot.php?token={$token}";
-        $mail->Subject = "Password reset link";
-        $mail->Body = $mailBody;
-
+        $token = $user->GenerateToken();
         $sql = "Update user set token = '$token' where user_email = '$user_mail'";
-
-        $result = $conn->query($sql);
+        $result = $db_obj->query($sql);
         if($result===TRUE)
         {
-            if($mail->send())
+            if($mailSender->SendMailToUser($user_mail,$token))
             {
-            echo"<script>alert('Mail sent');document.location.href='sign-in.php';</script>";
+                echo"<script>alert('Mail sent');document.location.href='sign-in.php';</script>";
             }
         }
     }
@@ -84,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
         $user_feedback = "User doesn't exist - sign up";
     }
 }
-$conn->close();
+$db_obj->close();
 ?>
 
 <!DOCTYPE html>

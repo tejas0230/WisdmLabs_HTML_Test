@@ -1,6 +1,11 @@
 <?php
 session_start();
-include 'connection.php';
+require('connection.php');
+
+require('user.php');
+$user = new User();
+
+$db_obj = DBConn::getDBConn();
 
 $feedback="";
 $passError="";
@@ -21,20 +26,6 @@ function CheckPassword($user_pass)
     }
 }
 
-function CheckUserExists($user_mail,$conn)
-{
-    $sql = "SELECT * from user where user_email = '{$user_mail}'";
-    $result = $conn->query($sql);
-    if($result->num_rows>0)
-    {
-        return TRUE;
-    }
-    else
-    {
-        return FALSE;
-    }
-}
-
 
 if($_SERVER["REQUEST_METHOD"]==="POST")
 {
@@ -44,25 +35,24 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
     $user_pass = $_POST['user-password'];
 
     //sanitaize data - remove white spaces from starting and end
-    $user_mail = trim($user_mail);
     $user_pass = trim($user_pass); 
-    //sanitaize data - remove dangerous characters to prevent HTML injection
-    $user_mail = filter_var($user_mail,FILTER_SANITIZE_EMAIL);
-    if(!filter_var($user_mail,FILTER_VALIDATE_EMAIL))
+    $user_mail = $user->TrimAndSanitizeEmail($user_mail);
+
+    if(!filter_var($user_mail, FILTER_VALIDATE_EMAIL))
     {
         $feedback = "Invalid Email";
         return 1;
     }
-    if(CheckUserExists($user_mail,$conn))
+    if($user->CheckUserExists($user_mail,$db_obj))
     {
-        $feedback = "User already exist - Sign In";
+        $feedback = "User already exists - Sign In";
     }
     else
     {
         if(CheckPassword($user_pass))
         {
-            $sql = "INSERT into user (user_name,user_email,user_pass) values ('$user_name','$user_mail','$user_pass')";
-            $result = $conn->query($sql);
+            $hashPass = sha1($user_pass);
+            $result = $user->SignUpUser($user_mail,$user_name,$hashPass,$db_obj);
             if($result===TRUE)
             {
                 $_SESSION['current_user'] = $user_mail;
@@ -75,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
         }
     }
 }
-$conn->close();
+$db_obj->close();
 
 ?>
 
