@@ -1,16 +1,17 @@
 <?php
 session_start();
-?>
-<?php 
 $class = "";
 $btnClass ="";
+$isUserLoggedIn = false;
 if(isset($_SESSION['current_user']))
 {
+    $isUserLoggedIn = true;
     $class="";
     $btnClass = "hidden";
 }
 else
 {
+    $isUserLoggedIn = false;
     $class="hidden";
     $btnClass="";
 }
@@ -32,7 +33,7 @@ else
                 <a href="index.php" class="logo">Logo</a>
                 <div class="nav-buttons">
                     <a href="sign-in.php" class="sign-in <?php
-    if(isset($_SESSION['current_user']))
+    if($isUserLoggedIn)
     {
         echo "hidden";
     }
@@ -42,10 +43,8 @@ else
     }
 ?>">Sign In</a>
                     <a href="logout.php" class="sign-in <?php
-    if(isset($_SESSION['current_user']))
-    {
+    if($isUserLoggedIn){
         echo "";
-
     }
     else
     {
